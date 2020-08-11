@@ -34,6 +34,23 @@ namespace ExTime
             }
         }
 
+        public void CompareHours(DateTime dateTime1, DateTime dateTime2)
+        {
+            int areObjectsEqual = TimeSpan.Compare(dateTime1.TimeOfDay, dateTime2.TimeOfDay);
+            switch (areObjectsEqual)
+            {
+                case -1:
+                    Console.WriteLine($"{dateTime1} is shorter then {dateTime2}");
+                    break;
+                case 0:
+                    Console.WriteLine($"{dateTime1} is equal to {dateTime2}");
+                    break;
+                case 1:
+                    Console.WriteLine($"{dateTime1} is longer than {dateTime2}");
+                    break;
+            }
+        }
+
 
     }
 }
