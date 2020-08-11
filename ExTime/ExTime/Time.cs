@@ -34,9 +34,14 @@ namespace ExTime
             }
         }
 
-        public void CompareHours(DateTime dateTime1, DateTime dateTime2)
+        public int CompareHours(DateTime dateTime1, DateTime dateTime2)
         {
-            int areObjectsEqual = TimeSpan.Compare(dateTime1.TimeOfDay, dateTime2.TimeOfDay);
+            return TimeSpan.Compare(dateTime1.TimeOfDay, dateTime2.TimeOfDay);
+        }
+
+        public void PrintHoursComparisonResult(DateTime dateTime1, DateTime dateTime2)
+        {
+            int areObjectsEqual = CompareHours(dateTime1, dateTime2);
             switch (areObjectsEqual)
             {
                 case -1:
@@ -49,6 +54,23 @@ namespace ExTime
                     Console.WriteLine($"{dateTime1} is longer than {dateTime2}");
                     break;
             }
+        }
+
+        public List<DateTime> SortTimes(List<DateTime> dateTimeList)
+        {
+            for (int i = 1; i < dateTimeList.Count; i++)
+            {
+                for (int j = 0; j < dateTimeList.Count - i; j++)
+                {
+                    if(CompareHours(dateTimeList[j], dateTimeList[j+1]) == 1)
+                    {
+                        DateTime highDate = dateTimeList[j];
+                        dateTimeList[j] = dateTimeList[j + 1];
+                        dateTimeList[j + 1] = highDate;
+                    }
+                }
+            }
+            return dateTimeList;
         }
 
 
